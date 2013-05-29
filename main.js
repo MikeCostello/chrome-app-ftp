@@ -1,17 +1,20 @@
-# FTP Client
+(function() {
+	var host = "foo.com";
+	var user = "bar";
+	var password = "foobar";
+	var port = 21;
 
-This is a simple FTP lib based on the [Chrome packaged apps samples](https://github.com/GoogleChrome/chrome-app-samples) using Boris Smus's TcpClient class.
+	var ftpClient = new FtpClient(host, port, user, password);
 
-```javascript
-	// Connect
 	ftpClient.connect()
-		// List directory contents
+
+		//* List directory contents
 		.then(ftpClient.list.bind(ftpClient))
 		.then(function(files) {
 			var deferred = Q.defer();
 			var hasSample = false;
 
-			// Look to see if sample folder exists
+			// Look to see if "sample" folder exists
 			files.forEach(function(file) {
 				if (file.name === "sample") {
 					hasSample = true;
@@ -41,8 +44,9 @@ This is a simple FTP lib based on the [Chrome packaged apps samples](https://git
 
 		// Disconnect
 		.then(ftpClient.disconnect.bind(ftpClient));
-```
 
-## Resources
 
-* [FTP RFC](http://tools.ietf.org/html/rfc959)
+	function log(msg) {
+		console.log(msg);
+	}
+})();
