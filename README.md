@@ -3,6 +3,14 @@
 This is a simple FTP lib based on the [Chrome packaged apps samples](https://github.com/GoogleChrome/chrome-app-samples) using Boris Smus's TcpClient class.
 
 ```javascript
+	// Host and credentials
+	var host = "foo.com";
+	var user = "bar";
+	var password = "foobar";
+	var port = 21;
+
+	var ftpClient = new FtpClient(host, port, user, password);
+
 	// Connect
 	ftpClient.connect()
 		// List directory contents
