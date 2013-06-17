@@ -20,7 +20,6 @@ Author: Boris Smus (smus@chromium.org)
 
   // Define some local variables here.
   var socket = chrome.socket || chrome.experimental.socket;
-  var dns = chrome.experimental.dns;
 
   /**
    * Creates an instance of the client
@@ -55,13 +54,11 @@ Author: Boris Smus (smus@chromium.org)
    */
   TcpClient.prototype.connect = function(callback) {
     // First resolve the hostname to an IP.
-    dns.resolve(this.host, function(result) {
-      this.addr = result.address;
-      socket.create('tcp', {}, this._onCreate.bind(this));
-
-      // Register connect callback.
-      this.callbacks.connect = callback;
-    }.bind(this));
+    this.addr = this.host;
+    socket.create('tcp', {}, this._onCreate.bind(this));
+     
+    // Register connect callback.
+    this.callbacks.connect = callback;
   };
 
   /**
