@@ -613,7 +613,7 @@ Author: Michael Costello (michael.a.costello@gmail.com)
 	 *******************************
 	 */
 	FtpClient.prototype._responseToCode = function(resp) {
-		return +resp.substring(0,3);
+		return +resp.trim().split("\n").slice(-1)[0].substring(0,3);
 	};
 
 	FtpClient.prototype._pasvToPort = function(pasv) {
