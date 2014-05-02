@@ -290,7 +290,7 @@ Author: Michael Costello (michael.a.costello@gmail.com)
         }
       }.bind(this));
 
-      controlSocket.sendMessage(cmd);
+      controlSocket.sendMessage(cmd+"\n");
     }
   };
 
