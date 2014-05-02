@@ -232,19 +232,19 @@ Author: Michael Costello (michael.a.costello@gmail.com)
         } else {
           resp += data;
         }
-
-        // Resolve 500ms after no data is received
-        clearTimeout(noDataTimer);
-        noDataTimer = setTimeout(function() {
-          clearInterval(dataSocket.readTimer);
-          dataSocket.disconnect();
-          dataSocket = null;
-
-          if (typeof callback === "function") {
-            callback(resp);
-          }
-        }, 500);
       }.bind(this));
+
+      // Resolve 500ms after no data is received
+      clearTimeout(noDataTimer);
+      noDataTimer = setTimeout(function() {
+        clearInterval(dataSocket.readTimer);
+        dataSocket.disconnect();
+        dataSocket = null;
+
+        if (typeof callback === "function") {
+          callback(resp);
+        }
+      }, 500);
 
       deferred.resolve(dataSocket);
     }.bind(this));
