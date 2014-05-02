@@ -664,14 +664,15 @@ Author: Michael Costello (michael.a.costello@gmail.com)
 
 			modifiedDate = new Date([y,m,d,h].join(" "));
 
-			file = {
+			var file = {
 				perm: props[0],
 				contentsLength: +props[1],
 				owner: props[2],
 				group: props[3],
 				size: +props[4],
 				modify: modifiedDate,
-				name: props.splice(8, props.length - 8).join(" ")
+				name: props.splice(8, props.length - 8).join(" "),
+        isDirectory: /^d/.test(props[0])
 			};
 
 			return file;
@@ -707,6 +708,8 @@ Author: Michael Costello (michael.a.costello@gmail.com)
 				modify.setHours(dt[3], dt[4]);
 				file.modify = modify;
 			}
+
+      file.isDirectory = /dir/.test(file.type);
 
 			return file;
 		});
