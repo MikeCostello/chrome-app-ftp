@@ -671,7 +671,8 @@ Author: Michael Costello (michael.a.costello@gmail.com)
 				group: props[3],
 				size: +props[4],
 				modify: modifiedDate,
-				name: props.splice(8, props.length - 8).join(" ")
+				name: props.splice(8, props.length - 8).join(" "),
+				isDirectory: (props[0].substr(0,1)=='d')
 			};
 
 			return file;
