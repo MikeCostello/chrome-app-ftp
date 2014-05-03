@@ -640,6 +640,22 @@ Author: Michael Costello (michael.a.costello@gmail.com)
 
   FtpClient.prototype._parseList = function(list) {
     var lines = list.split("\n");
+    
+    function chmod_num(perm){
+      var owner = group = other = 0;
+
+      if(perm[1]==='r') owner+=4;
+      if(perm[2]==='w') owner+=2;
+      if(perm[3]==='x') owner+=1;
+      if(perm[4]==='r') group+=4;
+      if(perm[5]==='w') group+=2;
+      if(perm[6]==='x') group+=1;
+      if(perm[7]==='r') other+=4;
+      if(perm[8]==='w') other+=2;
+      if(perm[9]==='x') other+=1;
+
+      return ''+owner+group+other;
+    }
 
     var files = lines.map(function(line) {
       var props = line.match(/\S+/g);
@@ -666,6 +682,7 @@ Author: Michael Costello (michael.a.costello@gmail.com)
 
       var file = {
         perm: props[0],
+        permn: chmod_num(props[0]),
         contentsLength: +props[1],
         owner: props[2],
         group: props[3],
