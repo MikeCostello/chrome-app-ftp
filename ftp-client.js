@@ -594,6 +594,23 @@ Author: Michael Costello (michael.a.costello@gmail.com)
     return deferred.promise;
   };
 
+  FtpClient.prototype._chmod =  function(mode, pathname) {
+    var deferred = Q.defer();
+    var cmd = "SITE CHMOD";
+
+    function parse(data) {
+      deferred.resolve();
+    }
+
+    if (pathname !== undefined) {
+      cmd += " " + mode + " " + pathname;
+    }
+
+    this._controlCommand(cmd, 200, parse);
+
+    return deferred.promise;
+  };
+
   FtpClient.prototype._noop =  function() {
     var deferred = Q.defer();
     var cmd = "NOOP";
