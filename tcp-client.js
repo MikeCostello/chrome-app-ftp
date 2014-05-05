@@ -69,7 +69,7 @@ Author: Boris Smus (smus@chromium.org)
    * @param {Function} callback The function to call when the message has sent
    */
   TcpClient.prototype.sendMessage = function(msg, callback) {
-    this._stringToArrayBuffer(msg + '\n', function(arrayBuffer) {
+    this._stringToArrayBuffer(msg, function(arrayBuffer) {
       socket.write(this.socketId, arrayBuffer, this._onWriteComplete.bind(this));
     }.bind(this));
 
