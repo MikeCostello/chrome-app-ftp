@@ -687,7 +687,7 @@ Author: Michael Costello (michael.a.costello@gmail.com)
       var yh = props[7];
       var y, t;
 
-      if (yh.indexOf(":")) {
+      if (yh.indexOf(":") !== -1) {
         y = new Date().getFullYear();
         h = yh;
       } else {
